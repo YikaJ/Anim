@@ -1,4 +1,5 @@
 const Anim = require('./lib/anim.js')
+const initCounterStore = require('./store/counter.js')
 
 // Global Mixin
 Anim.Page.mixin({
@@ -19,5 +20,6 @@ Anim.Page.mixin({
 Anim.App({
   onLaunch: function () {
     this.Anim = Anim
+    this.counterStore = initCounterStore()
   }
 })

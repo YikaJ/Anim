@@ -1,4 +1,6 @@
 <!--index.wxml-->
 <view>
-  <button>mixin 测试</button>
+  <button bind:tap="handleTap">count + 1</button>
+  <view>computed: {{computedMessage}}</view>
+  <view>count: {{count}}</view>
 </view>

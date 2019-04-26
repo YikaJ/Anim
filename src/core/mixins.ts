@@ -1,5 +1,7 @@
 import { PAGE_LIFECYCLE } from '../constant/page'
-
+import initObserve from '../lib/observer/initObserve'
+import initComputed from '../lib/observer/initComputed'
+import initWatch from '../lib/observer/initWatch'
 
 // 除下列其他的 mixins 为覆盖操作
 const lifeCycleMap = PAGE_LIFECYCLE.reduce((obj: any, key) => {
@@ -12,6 +14,15 @@ const PAGE_INITIAL_OPTIONS = {
   mixins: [],
   data: {},
   ...lifeCycleMap
+}
+
+// 提供 watch/computed/store mixin
+export const observeMixin = {
+  onLoad() {
+    initObserve(this)
+    initComputed(this)
+    initWatch(this)
+  }
 }
 
 // 将 mixins 与 options 混合
@@ -44,7 +55,7 @@ export function mixOptions(
 }
 
 // 转换 options
-export function transformOptions(options: any) {
+function transformOptions(options: any) {
   // 生命周期合并
   const finalOptions =  PAGE_LIFECYCLE
     .reduce((memory, key) => {
