@@ -15,10 +15,9 @@ export default function AnimPage<T>(opts: T | any) {
     currentMixins = currentMixins.concat(opts.mixins)
   }
 
-  console.log(currentMixins, opts)
-
   const pageOpts: any = mixins.mixOptions(currentMixins.concat(opts))
 
   // Page constructor
+  console.log('current page options', pageOpts) 
   Page(pageOpts)
 }
