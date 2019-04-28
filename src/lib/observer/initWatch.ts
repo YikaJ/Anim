@@ -1,5 +1,10 @@
-function initWatch(vm: any) {
+import { debounce } from 'throttle-debounce'
+
+function initWatch(vm: AnimPageInstance) {
   if (!vm.watch) return
+  
+  // 存储一套用于不被代理劫持的数据源
+  let watchDataMap: IAnyObject = {}
   Object.keys(vm.watch)
     .forEach(key => {
       const fn = vm.watch[key]
@@ -8,20 +13,23 @@ function initWatch(vm: any) {
         return
       }
 
+      watchDataMap[key] = vm.data[key]
+
       const descriptor = Object.getOwnPropertyDescriptor(vm.data, key)
-      let timer: any // 防止 watch 的值变化过快时，函数被频繁调用，如 a + b + c = d ，abc都发生变化时，d 应该只被触发一次
       if (descriptor) {
         Object.defineProperty(vm.data, key, {
           configurable: descriptor.configurable,
           enumerable: descriptor.enumerable,
           get: descriptor.get,
-          set(newValue) {
-            clearTimeout(timer)
-            const oldValue = vm.data[key]
-            timer = setTimeout(() => {
-              fn.call(vm, newValue, oldValue)
-            }, 0)
-            if (descriptor.set) descriptor.set(newValue)
+          set: function(newValue: any) {
+            console.log('setvalue', key, newValue)
+            // 从 watchDataMap 中取数据，防止从 vm.data 内取的是最新数据，无法得到 oldValue
+            const oldValue = watchDataMap[key]
+            fn.call(vm, newValue, oldValue)
+            if (descriptor.set) {
+              descriptor.set(newValue)
+              watchDataMap[key] = newValue
+            }
           }
         })
       }
@@ -29,7 +37,7 @@ function initWatch(vm: any) {
 }
 
 // 通过 setTimeout 来延迟 computed 属性的赋值
-export default (vm: any) => {
+export default (vm: AnimPageInstance) => {
   setTimeout(() => {
     initWatch(vm)
   }, 0)

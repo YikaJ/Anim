@@ -21,7 +21,10 @@ class Dep {
   }
 
   notify() {
-    this.subs.forEach(sub => sub.update())
+    this.subs.forEach(sub => {
+      console.log('notify getValue', sub.getValue())
+      sub.update()
+    })
   }
 }
 

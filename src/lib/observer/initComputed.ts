@@ -1,9 +1,8 @@
 import Watcher from './watcher'
-
-export default function initComputed(vm: any) {
+export default function initComputed(vm: AnimPageInstance) {
   if (!vm.computed) return
   // 初始化 computed data 数据
-  const computedData: any = {}
+  const computedData: IAnyObject = {}
   Object.keys(vm.computed)
     .forEach(key => {
       const fn = vm.computed[key]
@@ -14,15 +13,15 @@ export default function initComputed(vm: any) {
 
       // init watcher
       const watcher = new Watcher(vm, fn, () => {
-        // console.log('watcher set', key, watcher.value)
-        vm.setData({
+        vm.setData && vm.setData({
           [key]: watcher.value
         })
       })
-      vm.data[key] = watcher.value
-      computedData[key] = vm.data[key]
 
-      // Proxy
+      vm.data[key] = watcher.value
+      computedData[key] = watcher.value
+
+      // watching computed data
       Object.defineProperty(vm.data, key, {
         configurable: true,
         enumerable: true,
@@ -36,5 +35,5 @@ export default function initComputed(vm: any) {
       })
     })
 
-  vm.setData(computedData)
+  vm.setData && vm.setData(computedData)
 }

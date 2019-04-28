@@ -16,8 +16,13 @@ Anim.Page.mixin({
   },
   computed: {
     moreCount() {
-      console.log(this.data)
       return this.data.count + 1
+    }
+  },
+  watch: {
+    moreCount(newCount, oldCount) {
+      console.log('I Am the New Count', newCount)
+      console.log('I Am the Old Count', oldCount)
     }
   },
   onShow() {
@@ -30,7 +35,7 @@ Anim.Page.mixin({
 })
 
 //app.js
-App({
+Anim.App({
   onLaunch: function () {
     this.Anim = Anim
     this.counterStore = counterStore

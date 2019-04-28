@@ -11,8 +11,8 @@
 		"newFeature": true,
 		"nodeModules": true,
 		"autoAudits": false,
-		"checkInvalidKey": true,
-		"uglifyFileName": true
+		"uglifyFileName": true,
+		"checkInvalidKey": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.6.6",
