@@ -2,4 +2,5 @@
 <view>
   <button bind:tap="handleTap">count + 1</button>
   <view>Count: {{count}}</view>
+  <view>moreCount: {{moreCount}}</view>
 </view>

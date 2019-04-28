@@ -1,4 +1,4 @@
-import { PAGE_LIFECYCLE } from '../constant/page'
+import { PAGE_LIFECYCLE, PAGE_MERGE } from '../constant/page'
 
 // 通过函数生成纯的初始化选项
 function generatePageInitialOptions() {
@@ -27,15 +27,15 @@ export function mixOptions(
   const mixOptions = mixins.reduce((options, opt: any) => {
     Object.keys(opt).forEach(key => {
       // lifecycle
-      if(PAGE_LIFECYCLE.indexOf(key) !== -1) {
+      if(PAGE_LIFECYCLE.includes(key)) {
         return options[key].push(opt[key])
       }
 
-      // data（浅层 copy 顺序依次 global / mixin / page data）
-      if(key === 'data') {
-        options.data = {
-          ...options.data,
-          ...opt.data
+      // data 相关（浅层 copy 顺序依次 global / mixin / page data）
+      if(PAGE_MERGE.includes(key)) {
+        options[key] = {
+          ...options[key],
+          ...opt[key]
         }
         return
       }

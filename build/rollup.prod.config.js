@@ -2,7 +2,7 @@ const { terser } = require('rollup-plugin-terser')
 
 module.exports = {
   output: {
-    file: 'dist/anim.js',
+    file: 'dist/index.js',
     format: 'umd',
     name: 'anim',
   },

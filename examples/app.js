@@ -1,3 +1,4 @@
+// const Anim = require('@govcloud/anim/anim')
 const Anim = require('./lib/anim.js')
 const initCounterStore = require('./store/counter.js')
 const counterStore = initCounterStore()
@@ -13,6 +14,12 @@ Anim.Page.mixin({
     message: 'global Page mixin',
     mixinMessage: 'global Page mixin (mixinMessage)'
   },
+  computed: {
+    moreCount() {
+      console.log(this.data)
+      return this.data.count + 1
+    }
+  },
   onShow() {
     console.log(this.data.message)
     this.showModal()
@@ -23,7 +30,7 @@ Anim.Page.mixin({
 })
 
 //app.js
-Anim.App({
+App({
   onLaunch: function () {
     this.Anim = Anim
     this.counterStore = counterStore

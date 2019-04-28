@@ -1,12 +1,14 @@
 {
-  "name": "anim",
-  "version": "1.0.0",
+  "name": "@govcloud/anim",
+  "version": "0.0.2-1",
   "description": "mini-program develop framwork",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev rollup -c ./rollup.config.js -w",
     "build": "cross-env NODE_ENV=prod rollup -c ./rollup.config.js"
   },
+  "files": ["dist/*"],
+  "miniprogram": "dist",
   "author": "yikazhu",
   "license": "ISC",
   "devDependencies": {

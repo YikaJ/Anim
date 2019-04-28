@@ -14,8 +14,6 @@ if(process.env.NODE_ENV) {
 
   // merge plugins
   config.plugins = [].concat(baseConfig.plugins, envConfig.plugins || [])
-
-  console.log(config)
 }
 
 export default config
