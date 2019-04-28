@@ -1,34 +1,29 @@
 import { PAGE_LIFECYCLE } from '../constant/page'
-import initObserve from '../lib/observer/initObserve'
-import initComputed from '../lib/observer/initComputed'
-import initWatch from '../lib/observer/initWatch'
 
-// 除下列其他的 mixins 为覆盖操作
-const lifeCycleMap = PAGE_LIFECYCLE.reduce((obj: any, key) => {
-  obj[key] = []
-  return obj
-}, {})
+// 通过函数生成纯的初始化选项
+function generatePageInitialOptions() {
+  // 除下列其他的 mixins 为覆盖操作
+  const lifeCycleMap = PAGE_LIFECYCLE.reduce((obj: any, key) => {
+    obj[key] = []
+    return obj
+  }, {})
 
-// 初始化结构体
-const PAGE_INITIAL_OPTIONS = {
-  mixins: [],
-  data: {},
-  ...lifeCycleMap
-}
-
-// 提供 watch/computed/store mixin
-export const observeMixin = {
-  onLoad() {
-    initObserve(this)
-    initComputed(this)
-    initWatch(this)
+  // 初始化结构体
+  const PAGE_INITIAL_OPTIONS = {
+    mixins: [],
+    data: {},
+    ...lifeCycleMap
   }
+
+  return PAGE_INITIAL_OPTIONS
 }
+
 
 // 将 mixins 与 options 混合
 export function mixOptions(
   mixins: Object[],
 ) {
+
   const mixOptions = mixins.reduce((options, opt: any) => {
     Object.keys(opt).forEach(key => {
       // lifecycle
@@ -49,7 +44,7 @@ export function mixOptions(
       options[key] = opt[key]
     })
     return options
-  }, PAGE_INITIAL_OPTIONS)
+  }, generatePageInitialOptions())
 
   return transformOptions(mixOptions)
 }

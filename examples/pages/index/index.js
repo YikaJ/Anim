@@ -5,11 +5,6 @@ const { Anim, counterStore } = getApp()
 const simpleMixin = require('../../mixins/simple')
 
 Anim.Page({
-  store: (state) => {
-    return {
-      count: state.counter.count
-    }
-  },
   mixins: [ simpleMixin ],
   data: {
     pageMessage: 'page message'
@@ -22,8 +17,6 @@ Anim.Page({
   onLoad() {
     console.log('Page onLoad')
     this.showModal3()
-
-    counterStore.addCount()
   },
   showModal3() {
     wx.showModal({
@@ -32,5 +25,13 @@ Anim.Page({
   },
   handleTap() {
     counterStore.addCount()
+  },
+  handleTap2() {
+    this.showModal()
+  },
+  handleTap3() {
+    wx.navigateTo({
+      url: '/pages/logs/logs',
+    })
   }
 })

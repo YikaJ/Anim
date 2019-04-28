@@ -1,13 +1,19 @@
 const Anim = require('./lib/anim.js')
 const initCounterStore = require('./store/counter.js')
+const counterStore = initCounterStore()
 
 // Global Mixin
 Anim.Page.mixin({
+  store: (state) => {
+    return {
+      count: state.counter.count
+    }
+  },
   data: {
     message: 'global Page mixin',
     mixinMessage: 'global Page mixin (mixinMessage)'
   },
-  onLoad() {
+  onShow() {
     console.log(this.data.message)
     this.showModal()
   },
@@ -20,6 +26,6 @@ Anim.Page.mixin({
 Anim.App({
   onLaunch: function () {
     this.Anim = Anim
-    this.counterStore = initCounterStore()
+    this.counterStore = counterStore
   }
 })

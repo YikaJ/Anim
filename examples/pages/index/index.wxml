@@ -3,4 +3,6 @@
   <button bind:tap="handleTap">count + 1</button>
   <view>computed: {{computedMessage}}</view>
   <view>count: {{count}}</view>
+  <button bind:tap="handleTap2">global modal</button>
+  <button bind:tap="handleTap3">Next Page</button>
 </view>
