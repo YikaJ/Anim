@@ -1,7 +1,7 @@
 module.exports = {
   output: {
     file: 'examples/lib/anim.js',
-    format: 'cjs',
+    format: 'umd',
     name: 'anim',
   }
 }

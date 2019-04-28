@@ -1,9 +1,9 @@
 import Watcher from './watcher'
 
-export default function initComputed(vm) {
+export default function initComputed(vm: any) {
   if (!vm.computed) return
   // 初始化 computed data 数据
-  const computedData = {}
+  const computedData: any = {}
   Object.keys(vm.computed)
     .forEach(key => {
       const fn = vm.computed[key]

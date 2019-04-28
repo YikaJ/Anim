@@ -1,6 +1,6 @@
 import Dep from './dep'
 
-export default function initObserve(vm) {
+export default function initObserve(vm: any) {
   if (typeof vm.data === 'object' && vm.data !== 'null') {
     Object.keys(vm.data).forEach(key => {
       let value = vm.data[key]

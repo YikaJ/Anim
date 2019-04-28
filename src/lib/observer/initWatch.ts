@@ -1,4 +1,4 @@
-function initWatch(vm) {
+function initWatch(vm: any) {
   if (!vm.watch) return
   Object.keys(vm.watch)
     .forEach(key => {
@@ -29,7 +29,7 @@ function initWatch(vm) {
 }
 
 // 通过 setTimeout 来延迟 computed 属性的赋值
-export default (vm) => {
+export default (vm: any) => {
   setTimeout(() => {
     initWatch(vm)
   }, 0)

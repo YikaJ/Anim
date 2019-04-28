@@ -7,11 +7,11 @@ class Watcher {
   fn: () => void
   cb: () => void
   id = ++uid
-  depIdMap = {}
+  depIdMap: any = {}
   value: any
   dep = new Dep()
 
-  constructor(vm, fn, cb) {
+  constructor(vm: any, fn: any, cb: any) {
     this.vm = vm
     this.fn = fn
     this.cb = cb

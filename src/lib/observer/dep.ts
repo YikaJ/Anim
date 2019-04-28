@@ -6,7 +6,7 @@ let uid = 0
  * 依赖收集
  */
 class Dep {
-  static target: Watcher
+  static target?: Watcher
   subs: Watcher[] = []
   id = ++uid
 
