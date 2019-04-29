@@ -3,7 +3,7 @@ import Dep from './dep'
 let uid = 0
 
 class Watcher {
-  vm: AnimPageInstance
+  vm: Anim.PageInstance
   fn: () => any
   cb: () => void
   id = ++uid
@@ -12,7 +12,7 @@ class Watcher {
   oldValue: any
   dep = new Dep()
 
-  constructor(vm: AnimPageInstance, fn: () => any, cb: () => void) {
+  constructor(vm: Anim.PageInstance, fn: () => any, cb: () => void) {
     this.vm = vm
     this.fn = fn
     this.cb = cb
@@ -22,14 +22,12 @@ class Watcher {
   getValue() {
     Dep.target = this
     const value = this.fn.call(this.vm)
-    console.log('watcher getValue', value)
     Dep.target = undefined
     return value
   }
   update() {
     this.oldValue = this.value
     this.value = this.getValue()
-    console.log('update', this.value)
 
     this.cb.call(this.vm)
   }

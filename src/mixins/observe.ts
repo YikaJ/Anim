@@ -5,7 +5,7 @@ import initWatch from '../lib/observer/initWatch'
 
 // 提供 watch/computed/store mixin
 const observeMixin = {
-  onLoad(this: AnimPageInstance) {
+  onLoad(this: Anim.PageInstance) {
     initObserve(this)
     initWatch(this)
     initComputed(this)

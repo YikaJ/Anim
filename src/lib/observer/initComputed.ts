@@ -1,5 +1,5 @@
 import Watcher from './watcher'
-export default function initComputed(vm: AnimPageInstance) {
+export default function initComputed(vm: Anim.PageInstance) {
   if (!vm.computed) return
   // 初始化 computed data 数据
   const computedData: IAnyObject = {}

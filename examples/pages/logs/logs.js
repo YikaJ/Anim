@@ -1,6 +1,9 @@
 //logs.js
 const { Anim, counterStore } = getApp()
-Anim.Page({
+Page({
+  onLoad() {
+    console.log(this)
+  },
   handleTap() {
     counterStore.addCount()
   }

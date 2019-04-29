@@ -1,11 +1,15 @@
 import typescript from 'rollup-plugin-typescript'
 import nodeResolve from 'rollup-plugin-node-resolve'
+import commonjs from 'rollup-plugin-commonjs'
 
 const baseConfig =  {
   input: './src/index.ts',
   plugins: [
     typescript(),
     nodeResolve(),
+    commonjs({
+      include: /node_modules/
+    })
   ]
 }
 

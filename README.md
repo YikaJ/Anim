@@ -49,9 +49,9 @@ Anim.Page({
 
 ## 能力
 
-### 监听 Watch
-
 ### 计算属性 Computed
+
+### 监听 Watch
 
 ### 混入 Mixin
 
@@ -60,3 +60,22 @@ Anim.Page({
 ### 状态管理
 
 ### 路由增强
+
+#### API 增强
+
+更加符合前端路由库的方法集成。后续可考虑在前端层维护一个路由栈，可以除了后退还可以支持前进等需求。URL 和参数不再需要手动拼装，舒服使用。并且参数支持更加复杂的解析，支持多层嵌套，数组参数。提高小程序开发的便利性。
+
+所有的方法都是 Promise 化。
+
+this.$router.push({ path: string, query: Object})
+this.$router.pop()
+this.$router.redirect()
+this.$router.go(number)
+
+#### 突破小程序 10 层限制
+
+通过 Anim 维护的路由栈，还可以突破 10 层限制。利用 Redirect 和中间页来处理复杂逻辑。
+
+#### 路由响应
+
+路由数据会存放到 this.data.$route 中，方便 UI 使用。考虑到小程序前端的特殊性，暂时只支持 query 参数。

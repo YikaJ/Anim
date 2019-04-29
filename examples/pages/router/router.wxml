@@ -1,0 +1,6 @@
+<!--pages/router/router.wxml-->
+<view>
+  <view>当前路径：{{$route.path}}</view>
+  <view>参数嵌套：{{$route.query.key}}</view>
+  <view>参数数组：{{$route.query.key}}</view>
+</view>

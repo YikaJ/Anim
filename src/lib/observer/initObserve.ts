@@ -1,5 +1,5 @@
 import Dep from './dep'
-export default function initObserve(vm: AnimPageInstance) {
+export default function initObserve(vm: Anim.PageInstance) {
   if (typeof vm.data === 'object' && vm.data !== 'null') {
     Object.keys(vm.data).forEach(key => {
       const vmData = { ...vm.data }
@@ -11,8 +11,6 @@ export default function initObserve(vm: AnimPageInstance) {
           if (newValue === value || (newValue !== newValue && value !== value)) {
             return
           }
-          console.log(`------>initObserve ${key}:`, value, newValue)
-
           value = newValue
           // 对依赖发出通知
           dep.notify()

@@ -1,11 +1,14 @@
 import * as mixins from '../core/mixins'
+
+// defaultMixin
 import observeMixin from '../mixins/observe'
+import routerMixin from '../mixins/router'
 
 import { mapToData } from '../lib/wedux'
 
 // 存储前置 mixins
 // mixins 顺序：默认 mixin -> 全局 mixin -> 页面 mixin -> 页面 option
-const _mixins: Object[] = [observeMixin]
+const _mixins: Object[] = [observeMixin, routerMixin]
 
 // 提供全局混入 Global Mixins 的功能
 AnimPage.mixin = function<T>(opts: T) {
@@ -13,16 +16,16 @@ AnimPage.mixin = function<T>(opts: T) {
 }
 
 // Page 构造器
-export default function AnimPage<T>(opts: T | any) {
+export default function AnimPage<T>(opts: Anim.PageInstance) {
   let currentMixins = _mixins.slice()
   if(Array.isArray(opts.mixins)) {
     currentMixins = currentMixins.concat(opts.mixins)
   }
 
-  const pageOpts: any = mixins.mixOptions(currentMixins.concat(opts))
+  const pageOpts: Anim.PageInstance = mixins.mixOptions(currentMixins.concat(opts))
 
   // Page constructor
-  console.log('current page options', pageOpts) 
+  console.log('pageOpts', pageOpts)
   // 绑定 wedux
   if (pageOpts.store) {
     if (typeof pageOpts.store === 'function') {

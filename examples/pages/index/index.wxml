@@ -4,6 +4,7 @@
   <view>computed: {{computedMessage}}</view>
   <view>count: {{count}}</view>
   <view>moreCount: {{moreCount}}</view>
-  <button bind:tap="handleTap2">global modal</button>
-  <button bind:tap="handleTap3">Next Page</button>
+  <button bind:tap="handleTap2">Test Mixin</button>
+  <button bind:tap="handleTap3">Test Wedux</button>
+  <button bind:tap="handleTap4">Test Router</button>
 </view>

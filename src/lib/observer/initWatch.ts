@@ -1,6 +1,6 @@
 import { debounce } from 'throttle-debounce'
 
-function initWatch(vm: AnimPageInstance) {
+function initWatch(vm: Anim.PageInstance) {
   if (!vm.watch) return
   
   // 存储一套用于不被代理劫持的数据源
@@ -22,7 +22,6 @@ function initWatch(vm: AnimPageInstance) {
           enumerable: descriptor.enumerable,
           get: descriptor.get,
           set: debounce(10, function(newValue: any) {
-            console.log('setvalue', key, newValue)
             // 从 watchDataMap 中取数据，防止从 vm.data 内取的是最新数据，无法得到 oldValue
             const oldValue = watchDataMap[key]
             fn.call(vm, newValue, oldValue)
@@ -37,7 +36,7 @@ function initWatch(vm: AnimPageInstance) {
 }
 
 // 通过 setTimeout 来延迟 computed 属性的赋值
-export default (vm: AnimPageInstance) => {
+export default (vm: Anim.PageInstance) => {
   setTimeout(() => {
     initWatch(vm)
   }, 0)

@@ -30,8 +30,24 @@ Anim.Page({
     this.showModal()
   },
   handleTap3() {
-    wx.navigateTo({
-      url: '/pages/logs/logs',
+    this.$router.push({
+      path: '/pages/logs/logs?a[]=b&a[]=c'
+    })
+  },
+  handleTap4() {
+    this.$router.push({
+      path: '/pages/router/router',
+      query: {
+        a: {
+          b: {
+            c: 'heheda'
+          }
+        },
+        d: [1, 2],
+        e: [{f: '1'}, {f: '2'}]
+      }
+    }).then(() => {
+      console.log('router promise')
     })
   }
 })
