@@ -1,6 +1,6 @@
 //logs.js
 const { Anim, counterStore } = getApp()
-Page({
+Anim.Page({
   onLoad() {
     console.log(this)
   },
