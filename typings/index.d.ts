@@ -10,9 +10,12 @@ declare namespace Anim {
 
   // Router
   interface Router {
-    push: (options: RouterNavigateOpts) =>wechatPromise
-    pop: () => wechatPromise
-    redirect: (options: RouterNavigateOpts) => wechatPromise
+    navigateTo: (options: RouterNavigateOpts) => wechatPromise
+    navigateBack: (delta?: number) => wechatPromise
+    redirectTo: (options: RouterNavigateOpts) => wechatPromise
+    switchTab: (options: RouterNavigateOpts) => wechatPromise
+    reLaunch: (options: RouterNavigateOpts) => wechatPromise
+
     go: (delta: number) => wechatPromise
   }
   

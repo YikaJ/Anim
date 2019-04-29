@@ -9,7 +9,6 @@ export default function initRouter(this: Anim.PageInstance, options: IAnyObject 
     .reduce((str, key) => {
       return `${str}&${key}=${options[key]}`
     }, '')
-  console.log('currentPage', currentPage)
   this.setData && this.setData({
     '$route': {
       path: currentPage.route,
@@ -17,19 +16,35 @@ export default function initRouter(this: Anim.PageInstance, options: IAnyObject 
     },
   })
 
-  this.$router = {
-    push(options) {
-      const url = `${options.path}?${qs.stringify(options.query)}`
-      return wechat.navigateTo({ url })
+  // 初始化
+  initRouterMethods(this)
+}
+
+function initRouterMethods(vm: Anim.PageInstance) {
+  vm.$router = {
+    navigateTo(options) {
+      return wechat.navigateTo({ url: urlJoinOptions(options) })
     },
-    pop() {
-      return wechat.navigateTo({ url: options.path })
+    navigateBack(delta = 1) {
+      return wechat.navigateBack({ delta: delta })
     },
-    redirect(options) {
-      return wechat.navigateTo({ url: options.path })
+    redirectTo(options) {
+      return wechat.redirectTo({ url: urlJoinOptions(options) })
     },
-    go(delta) {
-      return wechat.navigateTo({ url: options.path })
+    reLaunch(options) {
+      return wechat.reLaunch({ url: urlJoinOptions(options) })
+    },
+    switchTab(options) {
+      return wechat.switchTab({ url: urlJoinOptions(options) })
+    },
+    go(num) {
+      if(num < 0) {
+        return wechat.navigateBack({ delta: Math.abs(num) })
+      }
     }
   }
+}
+
+function urlJoinOptions(options: Anim.RouterNavigateOpts) {
+  return `${options.path}?${qs.stringify(options.query)}`
 }
