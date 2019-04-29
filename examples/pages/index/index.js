@@ -30,12 +30,12 @@ Anim.Page({
     this.showModal()
   },
   handleTap3() {
-    this.$router.push({
-      path: '/pages/logs/logs?a[]=b&a[]=c'
+    this.$router.navigateTo({
+      path: '/pages/logs/logs'
     })
   },
   handleTap4() {
-    this.$router.push({
+    this.$router.navigateTo({
       path: '/pages/router/router',
       query: {
         a: {

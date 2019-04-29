@@ -11,7 +11,7 @@ Anim.Page.mixin({
     }
   },
   data: {
-    message: 'global Page mixin',
+    message: 'global mixin',
     mixinMessage: 'global Page mixin (mixinMessage)'
   },
   computed: {
@@ -30,7 +30,7 @@ Anim.Page.mixin({
     this.showModal()
   },
   showModal() {
-    wx.showModal({ title: this.data.message })
+    wx.showToast({ title: this.data.message })
   }
 })
 

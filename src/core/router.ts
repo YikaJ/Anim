@@ -1,18 +1,21 @@
 import wechat from '../core/wechat'
-import qs from 'qs'
 
 export default function initRouter(this: Anim.PageInstance, options: IAnyObject = {}) {
   const currentPage = getCurrentPages().slice(-1)[0]
+  let query
 
-  // 还原成原来的字符串，提供后续解析
-  const querystring = Object.keys(options)
-    .reduce((str, key) => {
-      return `${str}&${key}=${options[key]}`
-    }, '')
+  try {
+    query = JSON.parse(options.__anim__query)
+  } catch(e) {
+    query = {}
+  }
+
+  console.log(options)
+
   this.setData && this.setData({
     '$route': {
       path: currentPage.route,
-      query: qs.parse(querystring)
+      query
     },
   })
 
@@ -46,5 +49,5 @@ function initRouterMethods(vm: Anim.PageInstance) {
 }
 
 function urlJoinOptions(options: Anim.RouterNavigateOpts) {
-  return `${options.path}?${qs.stringify(options.query)}`
+  return `${options.path}?__anim__query=${JSON.stringify(options.query || {})}`
 }

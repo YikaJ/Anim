@@ -170,7 +170,7 @@ this.$router.reLaunch(number)
 this.$router.switchTab()
 
 // go 方法后续可以支持 backwards / forwards
-this.$router.go()
+this.$router.go(-1)
 ```
 
 #### 支持复杂的 query 数据
