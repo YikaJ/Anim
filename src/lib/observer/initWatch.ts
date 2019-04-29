@@ -21,7 +21,7 @@ function initWatch(vm: AnimPageInstance) {
           configurable: descriptor.configurable,
           enumerable: descriptor.enumerable,
           get: descriptor.get,
-          set: function(newValue: any) {
+          set: debounce(10, function(newValue: any) {
             console.log('setvalue', key, newValue)
             // 从 watchDataMap 中取数据，防止从 vm.data 内取的是最新数据，无法得到 oldValue
             const oldValue = watchDataMap[key]
@@ -30,7 +30,7 @@ function initWatch(vm: AnimPageInstance) {
               descriptor.set(newValue)
               watchDataMap[key] = newValue
             }
-          }
+          })
         })
       }
     })

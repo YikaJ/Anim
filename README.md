@@ -19,7 +19,7 @@ Anim 框架是基于原生小程序 Mina 框架开发的，采用 rollup 打包�
 
 下载地址：
 
-* anim.js (10kb)，[下载](https://www.qq.com)
+* anim.js (17kb)，[下载](https://www.qq.com)
 * anim.min.js (5kb)，[下载](https://www.qq.com)
 
 ```js
