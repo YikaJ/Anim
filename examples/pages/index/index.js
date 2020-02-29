@@ -7,11 +7,19 @@ const simpleMixin = require('../../mixins/simple')
 Anim.Page({
   mixins: [ simpleMixin ],
   data: {
-    pageMessage: 'page message'
+    pageMessage: 'page message',
+    formData: {
+      arrData: []
+    }
   },
   computed: {
     computedMessage() {
       return this.data.pageMessage + 'xxxxx'
+    },
+    computedArrData() {
+      const { formData } = this.data
+      const computedData = formData.arrData.map(() => ({ value: Math.random() }))
+      return computedData
     }
   },
   onLoad() {
@@ -48,6 +56,14 @@ Anim.Page({
       }
     }).then(() => {
       console.log('router promise')
+    })
+  },
+  handleTap5() {
+    const { formData } = this.data
+    this.setData({
+      formData: Object.assign({}, formData, {
+        arrData: formData.arrData.concat({ username: '' })
+      })
     })
   }
 })

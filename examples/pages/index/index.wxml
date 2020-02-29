@@ -7,4 +7,7 @@
   <button bind:tap="handleTap2">Test Mixin</button>
   <button bind:tap="handleTap3">Test Wedux</button>
   <button bind:tap="handleTap4">Test Router</button>
+  <button bind:tap="handleTap5">Add computed ArrData</button>
+
+  <view wx:for="{{formData.arrData}}" wx:key="{{index}}">{{index}}</view>
 </view>
